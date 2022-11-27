@@ -14,7 +14,8 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
-
+    'apikey' => '8cfbf2a85c9149448bfad26c5a07eed2',
+    'newsapi' => 'https://newsapi.org/v2/everything?',
     /*
     |--------------------------------------------------------------------------
     | Application Environment
@@ -67,7 +68,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Europe/Madrid',
 
     /*
     |--------------------------------------------------------------------------

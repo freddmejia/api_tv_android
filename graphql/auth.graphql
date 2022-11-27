@@ -90,10 +90,44 @@ input RegisterCategoria {
     nombre: String!
 }
 
-
 type Categorias {
     id: ID!
     nombre: String!
+    noticias: [Noticias!]! @hasMany
     created_at: DateTime!
     updated_at: DateTime!
+}
+
+input RegisterNoticia {
+    id_categoria: ID!
+    source: String!
+    autor: String
+    titulo: String!
+    descripcion: String!
+    url: String!
+    imagen: String
+    fecha_publicado_utc: String!
+    fecha_publicado: String!
+    contenido: String!
+}
+
+type Noticias {
+    id: ID!
+    categoria: Categorias! @belongsTo
+    source: String!
+    autor: String
+    titulo: String!
+    descripcion: String!
+    url: String!
+    imagen: String
+    fecha_publicado_utc: String!
+    fecha_publicado: String!
+    contenido: String!
+    created_at: DateTime!
+    updated_at: DateTime!
+}
+
+type LoadCategorias {
+    categoria: Categorias!,
+    noticias: [Noticias!]!
 }

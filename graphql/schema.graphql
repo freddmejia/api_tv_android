@@ -19,6 +19,9 @@ type Query {
     ): [User!]! @guard @paginate(defaultCount: 10)
 
     categorias: [Categorias!]! @guard @paginate(defaultCount: 5)
+    noticias: [Noticias!]! @guard @paginate(defaultCount: 5)
+    categoria_noticias(id_categoria: ID! @eq): [Noticias!]! @guard @paginate(defaultCount: 5)
+    categoria_noticias_order(id_categoria: ID! @eq orderBy: _  @orderBy(columns:["fecha_publicado"]) ): [Noticias!]! @guard @paginate(defaultCount: 5) 
 }
 
 "Account of a person who utilizes this application."
@@ -53,4 +56,5 @@ type Mutation {
     verifyEmail(input: VerifyEmailInput! @spread): AuthPayload! @field(resolver: "Joselfonseca\\LighthouseGraphQLPassport\\GraphQL\\Mutations\\VerifyEmail@resolve")
     updatePassword(input: UpdatePassword! @spread): UpdatePasswordResponse! @field(resolver: "Joselfonseca\\LighthouseGraphQLPassport\\GraphQL\\Mutations\\UpdatePassword@resolve") @guard(with: ["api"])
     crear_categoria(input: RegisterCategoria @spread): Categorias! @create
+    crear_noticia(input: RegisterNoticia @spread): Noticias! @create
 }

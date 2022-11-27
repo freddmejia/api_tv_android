@@ -9,6 +9,11 @@ class Categorias extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'name',
+        'nombre',
     ];
+
+    public function noticias(){
+        return $this->hasMany('App\Models\Noticias','id_categoria','id');
+    }
+
 }

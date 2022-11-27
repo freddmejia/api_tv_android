@@ -19,8 +19,17 @@ Artisan::command('inspire', function () {
 })->purpose('Display an inspiring quote');
 Artisan::command('user', function () {
     \App\Models\User::create([
-        'name' => 'Jose Fonseca',
-        'email' => 'myemail@email.com',
-        'password' => bcrypt('123456789qq')
+        'name' => 'Admin',
+        'email' => 'admin@gmail.com',
+        'password' => bcrypt('1234567890@!')
     ]);
-})->describe('Create sample user');
+})->describe('Crear admin user');
+
+Artisan::command('categorias', function () {
+    $categorias = ['Home','Medicina','Deporte','Tecnología'];
+    foreach($categorias as $categoria){
+        \App\Models\Categorias::create([
+            'nombre' => $categoria,
+        ]);
+    }
+})->describe('Crear categorias');
