@@ -44,21 +44,25 @@ class FetchNoticias extends Command
             $noticias = json_decode($noticias);
             $articulos = $noticias->articles;
             foreach($articulos as $noticia){
-                $datetime = str_replace('Z',' ',str_replace('T',' ',$noticia->publishedAt));
-                $datos['id_categoria'] = $id_categoria;
-                $datos['source'] = $noticia->source->name;
-                $datos['autor'] = $noticia->author;
-                $datos['titulo'] = $noticia->title;
-                $datos['descripcion'] = $noticia->description;
-                $datos['url'] = $noticia->url;
-                $datos['imagen'] = $noticia->urlToImage;
-                $datos['fecha_publicado_utc'] = $datetime;
-                $datos['fecha_publicado'] = FetchNoticias::convertir_datetime_a_spain($datetime);
-                $datos['contenido'] = $noticia->content;
-                Noticias::agregar_noticia($datos);
-                $this->info('noticia '.serialize($noticia->title));
-                $this->info('======================================================================');
-                sleep(1);
+                if( ( strval($noticia->title) != 'null' || empty($noticia->title) ) && ( strval($noticia->urlToImage) != 'null') || empty($noticia->urlToImage))
+                {
+                    $datetime = str_replace('Z',' ',str_replace('T',' ',$noticia->publishedAt));
+                    $datos['id_categoria'] = $id_categoria;
+                    $datos['source'] = $noticia->source->name;
+                    $datos['autor'] = $noticia->author;
+                    $datos['titulo'] = $noticia->title;
+                    $datos['descripcion'] = $noticia->description;
+                    $datos['url'] = $noticia->url;
+                    $datos['imagen'] = $noticia->urlToImage;
+                    $datos['fecha_publicado_utc'] = $datetime;
+                    $datos['fecha_publicado'] = FetchNoticias::convertir_datetime_a_spain($datetime);
+                    $datos['contenido'] = $noticia->content;
+                    $this->info('noticia '.serialize($datos));
+                    Noticias::agregar_noticia($datos);
+                    
+                    $this->info('======================================================================');
+                    sleep(1);
+                }
             }
         }
         return 0;

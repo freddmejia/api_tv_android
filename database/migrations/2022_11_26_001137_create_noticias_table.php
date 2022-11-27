@@ -19,8 +19,8 @@ class CreateNoticiasTable extends Migration
             $table->text('source')->nullable();
             $table->string('autor')->nullable();
             $table->text('titulo');
-            $table->text('descripcion');
-            $table->text('url');
+            $table->text('descripcion')->nullable();
+            $table->text('url')->nullable();
             $table->text('imagen')->nullable();
             $table->string('fecha_publicado_utc');
             $table->string('fecha_publicado');
