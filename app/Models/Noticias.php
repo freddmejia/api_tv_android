@@ -13,7 +13,7 @@ class Noticias extends Model
 
     protected $fillable = [
         'id_categoria','source','autor','titulo','descripcion',
-        'url','imagen','fecha_publicado_utc','fecha_publicado','contenido',
+        'url','imagen','fecha_publicado_utc','fecha_publicado','contenido'
     ];
     public function categoria(){
         return $this->belongsTo('App\Models\Categorias','id_categoria','id');

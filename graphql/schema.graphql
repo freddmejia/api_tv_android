@@ -16,12 +16,12 @@ type Query {
     users(
       "Filters by name. Accepts SQL LIKE wildcards `%` and `_`."
       name: String @where(operator: "like")
-    ): [User!]! @guard @paginate(defaultCount: 10)
+    ): [User!]!  @paginate(defaultCount: 10)
 
     categorias: [Categorias!]! @guard @paginate(defaultCount: 5)
     noticias: [Noticias!]! @guard @paginate(defaultCount: 5)
     categoria_noticias(id_categoria: ID! @eq): [Noticias!]! @guard @paginate(defaultCount: 5)
-    categoria_noticias_order(id_categoria: ID! @eq orderBy: _  @orderBy(columns:["fecha_publicado"]) ): [Noticias!]! @guard @paginate(defaultCount: 5) 
+    categoria_noticias_order(id_categoria: ID! @eq orderBy: _  @orderBy(columns:["fecha_publicado"]) ): [Noticias!]! @paginate(defaultCount: 5) 
 }
 
 "Account of a person who utilizes this application."
